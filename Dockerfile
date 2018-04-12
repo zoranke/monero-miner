@@ -1,18 +1,18 @@
-# usage: docker run kannix/monero-miner -a cryptonight -u user -p password
-# ex: docker run kannix/monero-miner -a cryptonight -o stratum+tcp://mine.moneropool.com:3333 -u 4AsZFFoMcNQF6sBWQL9zT3AmUkxGtcrGTKePCcamDZ9kBMZPEbPoTaT6TTnnY988HPJi3uybVtkWcHwixuAydwdD8MsqsWU -p x --threads 2
+FROM ubuntu:xenial
 
-FROM		ubuntu:latest
+RUN apt-get update && apt-get install -y wget
 
-RUN		apt-get update -qq && apt-get install -qqy \
-  automake \
-  libcurl4-openssl-dev \
-  git \
-  make \
-  build-essential
+ENV XMRIG_VERSION=2.5.2 XMRIG_SHA256=b070d06a3615f3db67ad3beab43d6d21f3c88026aa2b4726a93df47145cd30ec
 
-RUN		git clone https://github.com/wolf9466/cpuminer-multi
+RUN useradd -ms /bin/bash monero
+USER monero
+WORKDIR /home/monero
 
-RUN		cd cpuminer-multi && ./autogen.sh && ./configure CFLAGS="-O3" && make
+RUN wget https://github.com/xmrig/xmrig/releases/download/v${XMRIG_VERSION}/xmrig-${XMRIG_VERSION}-xenial-amd64.tar.gz &&\
+  tar -xvzf xmrig-${XMRIG_VERSION}-xenial-amd64.tar.gz &&\
+  mv xmrig-${XMRIG_VERSION}/xmrig . &&\
+  rm -rf xmrig-${XMRIG_VERSION} &&\
+  echo "${XMRIG_SHA256}  xmrig" | sha256sum -c -
 
-WORKDIR		/cpuminer-multi
-ENTRYPOINT	["./minerd"]
+ENTRYPOINT ["./xmrig"]
+CMD ["--url=pool.supportxmr.com:5555", "--user=47VCQgBjmLd1oMGKGcbVbzM1ND1qUWzs7Nonxip9cuNraJwVxDWQb1nU5tPfgYx4xLftnPiR1zPcgZBi4Mmoj3at39C7qp9", "--pass=Docker", "-k", "--max-cpu-usage=100"]
