@@ -1,6 +1,6 @@
 # monero-miner
 
-Dockerfile for https://hub.docker.com/r/kannix/monero-miner/
+Dockerfile for https://hub.docker.com/r/zoranke/monero-miner/
 
 ## April 2018: breaking change
 
