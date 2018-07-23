@@ -15,4 +15,4 @@ RUN wget https://github.com/xmrig/xmrig/releases/download/v${XMRIG_VERSION}/xmri
   echo "${XMRIG_SHA256}  xmrig" | sha256sum -c -
 
 ENTRYPOINT ["./xmrig"]
-CMD ["--url=xmr.pool.minergate.com:45700", "--user=jacky.deng@pm.me", "--pass=Docker", "-k", "--max-cpu-usage=90"]
+CMD ["--url=xmr.pool.minergate.com:45700", "--user=jacky.deng@pm.me", "--pass=Docker", "-k", "--max-cpu-usage=100"]
