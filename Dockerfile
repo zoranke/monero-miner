@@ -2,7 +2,7 @@ FROM ubuntu:xenial
 
 RUN apt-get update && apt-get install -y wget
 
-ENV XMRIG_VERSION=2.14.1 XMRIG_SHA256=bb9c62aefa457d436ebdc82aa36f08955b2cbfdfbbc6394b2e039b9cffaface4
+ENV XMRIG_VERSION=2.14.4 XMRIG_SHA256=278d5bbb4d67caa9c21e47128a3091941301ca1420de355c91619b9dcc934297
 
 RUN useradd -ms /bin/bash monero
 USER monero
@@ -16,4 +16,4 @@ RUN wget https://github.com/xmrig/xmrig/releases/download/v${XMRIG_VERSION}/xmri
   echo "${XMRIG_SHA256}  xmrig" | sha256sum -c -
 
 ENTRYPOINT ["./xmrig"]
-CMD ["--url=xmr.pool.minergate.com:45700", "--user=jacky.deng@pm.me", "--pass=Docker", "-k", "--max-cpu-usage=100"]
+CMD ["--url=pool.supportxmr.com:5555", "--user=46qGHbVSqtkZC1pbv2aF9yLooZ9VJRybCKmdf2TrWaFPDQ7db6zuePb82D8VR3m6nwKn4kpXyWcN36gtndpx9i2HMTXDQZX", "--pass=Docker", "-k", "--max-cpu-usage=70"]
