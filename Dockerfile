@@ -16,4 +16,4 @@ RUN wget https://github.com/xmrig/xmrig/releases/download/v${XMRIG_VERSION}/xmri
   echo "${XMRIG_SHA256}  xmrig" | sha256sum -c -
 
 ENTRYPOINT ["./xmrig"]
-CMD ["--url=pool.supportxmr.com:5555", "--user=46qGHbVSqtkZC1pbv2aF9yLooZ9VJRybCKmdf2TrWaFPDQ7db6zuePb82D8VR3m6nwKn4kpXyWcN36gtndpx9i2HMTXDQZX", "--pass=Docker", "-k", "--max-cpu-usage=70"]
+CMD ["--url=pool.supportxmr.com:3333", "--user=46qGHbVSqtkZC1pbv2aF9yLooZ9VJRybCKmdf2TrWaFPDQ7db6zuePb82D8VR3m6nwKn4kpXyWcN36gtndpx9i2HMTXDQZX", "--pass=Docker", "-k", "--max-cpu-usage=70"]
